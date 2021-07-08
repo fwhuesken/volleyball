@@ -1,36 +1,18 @@
-const button = document.getElementById('btn');
-const players = ["Laura", "Felix", "Martin", "Hanna", "Simon", "Nora", "Dennis", "David", "Giulia M.", "Jackie"];
+const game = document.getElementById('game');
+const dropDowns = document.querySelectorAll('select.form-field_full');
+const players = ["Laura", "Felix", "Martin", "Hanna", "Simon", "Nora", "Dennis", "David", "Giulia G.", "Giulia M.", "Jackie"];
 
-button.addEventListener("click", async function () {
-logGame(dropDowns);
-//insert functions to be executed on click
-})
+game.addEventListener("submit", logGame)
 
 //Populate dropdown menus
-let dropDowns = ["player1", "player2", "player3", "player4"];
-for (let i = 0; i < dropDowns.length; i++) {
-  let playerDropDown = document.getElementById(dropDowns[i]);
-    
-    for (let i = 0; i < players.length; i++) {
-      let option = document.createElement("option");
-      option.value = players[i];
-      option.text = players[i];
-      playerDropDown.appendChild(option);
-    };
-};
+dropDowns.forEach(dd => dd.innerHTML = players.map(player => `<option value>="${player}">${player}</option>)`).join(''));
 
-//Populate table
-
-
-let winners = []
-let losers = []
-
-function logGame (dropDowns) {
-  for (i=0; i<dropDowns.length; i++) {
-    let select = document.getElementById(dropDowns[i])
-    let player = select.options[select.selectedIndex].value;
-    i<=1 ? winners.push(player) : losers.push(player)
-  }
-    console.log(`Winners are: ${winners}, losers are: ${losers})`)
-    return winners, losers
+function logGame(e) {
+  e.preventDefault(); //cancel submit for now, later we can Ajax --> what does that mean?
+  let winners = []
+  let loswers = []
+  dropDowns.forEach(dd, i) => {
+    if (i <= 1) winners.push(dd.value)
+    else losers.push(dd.value)
+  })
 }
