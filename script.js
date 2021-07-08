@@ -1,10 +1,10 @@
+const button = document.getElementById('btn');
+
 const game = document.getElementById('game');
 const dropDowns = document.querySelectorAll('select.form-field__full')
 const players = ["Laura", "Felix", "Martin", "Hanna", "Simon", "Nora", "Dennis", "David", "Giulia G.", "Giulia M.", "Jackie"];
 
-game.addEventListener("submit", logGame)
-
-
+button.addEventListener("click", logGame);
 //Populate dropdown menus
 
 dropDowns.forEach(dd => dd.innerHTML = players.map(player => `<option value="${player}">${player}</option>`).join(''));
